@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Lumiqo PDF Reader</title>
+    <title>Lumiqo - The Ultimate PDF Experience</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg: #0A0A0C;
@@ -14,316 +15,284 @@
             --card: #1C1C21;
             --primary: #7C5CFC;
             --primary-light: #9C85FF;
+            --primary-dark: #5B3FE0;
             --text-primary: #F5F5F7;
             --text-secondary: #9A9AA2;
             --text-tertiary: #6B6B73;
-            --accent: #F5A623;
+            --orange: #F5A623;
             --green: #22C55E;
+            --red: #E0473E;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Animated Background Waves */
-        .waves {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        /* Navbar */
+        /* Nav */
         nav {
-            padding: 20px 10%;
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0; width: 100%; z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
         .logo {
-            font-weight: 800;
-            font-size: 24px;
-            color: var(--primary-light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
+            font-weight: 800; font-size: 24px; color: #fff;
+            display: flex; align-items: center; gap: 12px; text-decoration: none;
         }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
-            border-radius: 8px;
-            display: grid;
-            place-items: center;
-            color: white;
-            font-size: 18px;
+        .logo-box {
+            width: 36px; height: 36px; background: var(--primary);
+            border-radius: 10px; display: grid; place-items: center;
+            box-shadow: 0 0 20px rgba(124, 92, 252, 0.4);
         }
-
-        .btn-app {
-            background: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            font-size: 14px;
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-secondary);
+            font-size: 14px; font-weight: 500; transition: 0.3s;
         }
-
-        .btn-app:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
+        .nav-links a:hover { color: var(--primary-light); }
+        .btn-download {
+            background: var(--primary); color: #fff; padding: 12px 24px;
+            border-radius: 14px; font-weight: 600; transition: 0.3s;
+            text-decoration: none; font-size: 14px;
+        }
+        .btn-download:hover {
+            background: var(--primary-light); transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(124, 92, 252, 0.3);
         }
 
         /* Hero */
+        section { padding: 100px 8%; }
         .hero {
-            padding: 80px 10% 40px;
-            text-align: center;
+            padding-top: 180px; text-align: center;
+            background: radial-gradient(circle at top, rgba(124, 92, 252, 0.15) 0%, transparent 50%);
         }
-
         .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, #FFF, var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(40px, 6vw, 72px); font-weight: 800; line-height: 1.1;
+            margin-bottom: 24px; letter-spacing: -1px;
         }
-
+        .hero h1 span { color: var(--primary-light); }
         .hero p {
+            font-size: 20px; color: var(--text-secondary); max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .hero-btns { display: flex; justify-content: center; gap: 20px; }
+        .app-mockup {
+            margin-top: 80px; position: relative; max-width: 400px; margin-left: auto; margin-right: auto;
+        }
+        .mockup-img {
+            width: 100%; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            transition: 0.5s;
+        }
+        .mockup-img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        /* Features */
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 36px; font-weight: 700; margin-bottom: 10px; }
+        .section-title p { color: var(--text-secondary); font-size: 18px; }
+
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .feat-card {
+            background: var(--surface); padding: 40px; border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.03); transition: 0.3s;
+        }
+        .feat-card:hover {
+            transform: translateY(-10px); border-color: rgba(124, 92, 252, 0.2);
+            background: var(--card);
+        }
+        .feat-icon {
+            width: 50px; height: 50px; border-radius: 12px; margin-bottom: 20px;
+            display: grid; place-items: center; font-size: 20px;
+        }
+
+        /* Premium */
+        .premium { background: var(--surface); border-radius: 40px; }
+        .premium-box {
+            display: flex; flex-wrap: wrap; gap: 60px; align-items: center;
+        }
+        .premium-info { flex: 1; min-width: 300px; }
+        .premium-list { list-style: none; margin: 30px 0; }
+        .premium-list li {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
             color: var(--text-secondary);
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto;
         }
+        .premium-list i { color: var(--green); font-size: 18px; }
 
-        /* Content */
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 40px 20px 100px;
+        /* CTA */
+        .cta {
+            text-align: center; background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            border-radius: 40px; margin: 0 8% 100px; padding: 80px 40px;
         }
+        .cta h2 { font-size: 42px; margin-bottom: 20px; }
+        .cta .btn-download { background: #fff; color: var(--primary); font-size: 18px; padding: 16px 40px; }
+        .cta .btn-download:hover { background: #f0f0f0; color: var(--primary-dark); }
 
-        .content-card {
-            background: var(--surface);
-            border-radius: 24px;
-            padding: 50px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-        }
-
-        h2 {
-            font-size: 24px;
-            color: var(--primary-light);
-            margin: 40px 0 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        h2::before {
-            content: '';
-            width: 4px;
-            height: 24px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        h3 {
-            font-size: 18px;
-            color: var(--text-primary);
-            margin: 25px 0 10px;
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        ul {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-
-        li {
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        li::before {
-            content: '✔';
-            position: absolute;
-            left: 0;
-            color: var(--green);
-            font-weight: bold;
-        }
-
-        .highlight-box {
-            background: rgba(124, 92, 252, 0.05);
-            border-left: 4px solid var(--primary);
-            padding: 20px;
-            border-radius: 0 12px 12px 0;
-            margin: 30px 0;
-        }
-
-        .highlight-box p {
-            margin-bottom: 0;
-            font-style: italic;
-            color: var(--text-primary);
-        }
-
+        /* Footer */
         footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            background: var(--bg);
+            padding: 80px 8% 40px; border-top: 1px solid rgba(255,255,255,0.05);
         }
-
-        .footer-logo {
-            font-weight: 700;
-            color: var(--text-tertiary);
-            margin-bottom: 10px;
-            display: block;
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px; margin-bottom: 60px;
         }
-
-        .copyright {
-            color: var(--text-tertiary);
-            font-size: 12px;
+        .footer-col h4 { margin-bottom: 20px; font-size: 16px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col a { text-decoration: none; color: var(--text-secondary); transition: 0.2s; font-size: 14px; }
+        .footer-col a:hover { color: var(--primary-light); }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px;
         }
-
-        a {
-            color: var(--primary-light);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
+        .social-links { display: flex; gap: 20px; }
+        .social-links a { color: var(--text-tertiary); font-size: 20px; transition: 0.3s; }
+        .social-links a:hover { color: #fff; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .content-card { padding: 30px 20px; }
-            nav { padding: 15px 5%; }
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate {
-            animation: fadeIn 1s ease forwards;
+            .nav-links { display: none; }
+            section { padding: 60px 5%; }
+            .hero { padding-top: 140px; }
         }
     </style>
 </head>
 <body>
 
-    <svg class="waves" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#7C5CFC" fill-opacity="0.05" d="M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,122.7C672,128,768,192,864,202.7C960,213,1056,171,1152,149.3C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
-
     <nav>
         <a href="#" class="logo">
-            <div class="logo-icon">L</div>
+            <div class="logo-box"><i class="fas fa-file-pdf"></i></div>
             Lumiqo
         </a>
-
-        <!--  uncomment when the app launch on the playstore -->
-        <!-- <a href="https://play.google.com/store" class="btn-app">Download App</a> -->
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#premium">Premium</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+        <a href="https://play.google.com/store" class="btn-download"><i class="fab fa-google-play"></i> Get App</a>
     </nav>
 
-    <header class="hero animate">
-        <h1>Privacy Policy</h1>
-        <p>Your privacy is our priority. Learn how Lumiqo Labs handles your data with transparency and security.</p>
+    <header class="hero">
+        <h1>Read Smarter. <span>Read Faster.</span></h1>
+        <p>The modern PDF reader built for performance. Lumiqo gives you the power to manage, view, and transform documents effortlessly.</p>
+        <div class="hero-btns">
+            <a href="https://play.google.com/store" class="btn-download" style="padding: 16px 36px; font-size: 16px;">Download Free</a>
+            <a href="#premium" class="btn-download" style="background: var(--surface); border: 1px solid rgba(255,255,255,0.1); padding: 16px 36px; font-size: 16px;">View Premium</a>
+        </div>
+        <div class="app-mockup">
+            <img src="app_logo.png" alt="Lumiqo Logo" class="mockup-img">
+        </div>
     </header>
 
-    <main class="container animate" style="animation-delay: 0.2s;">
-        <div class="content-card">
-            <p><strong>Effective Date:</strong> June 22, 2026<br>
-            <strong>Last Updated:</strong> June 22, 2026</p>
-
-            <p>Lumiqo Labs ("we," "our," or "us") operates the Lumiqo PDF Reader mobile application (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service.</p>
-
-            <div class="highlight-box">
-                <p><strong>Strict Privacy Commitment:</strong> Lumiqo does not collect, upload, or share the content of your PDF files. All document processing happens locally on your device.</p>
-            </div>
-
-            <h2>1. Information Collection and Use</h2>
-            <p>We do not collect any personal data from you unless you explicitly provide it (e.g., when sending feedback). Lumiqo is designed to be a privacy-first application.</p>
-
-            <h3>A. Personal Data</h3>
-            <p>While using our Service, we may ask you to provide certain identifiers for specific features:</p>
-            <ul>
-                <li>Email address (only if you contact support)</li>
-                <li>Phone number (only for payment processing via Razorpay)</li>
-                <li>Usage Data (anonymized crash reports via Google)</li>
-            </ul>
-
-            <h2>2. Permissions</h2>
-            <p>To provide its functionality, Lumiqo requires the following permissions on your Android device:</p>
-            <ul>
-                <li><strong>Storage/Media Access:</strong> Required to find, open, and display PDF files saved on your device.</li>
-                <li><strong>Internet Access:</strong> Required for premium subscription processing and checking for app updates.</li>
-            </ul>
-
-            <h2>3. Third-Party Services</h2>
-            <p>We use trusted third-party providers to facilitate premium features and app stability:</p>
-            <ul>
-                <li><strong>Razorpay:</strong> Processes premium subscriptions securely. They are PCI-DSS compliant. <a href="https://razorpay.com/privacy/">View Policy</a></li>
-                <li><strong>Google Play Services:</strong> Used for app distribution and crash monitoring.</li>
-            </ul>
-
-            <h2>4. Payment Security</h2>
-            <p>When you purchase Lumiqo Premium, your payment details (Credit Card, UPI, etc.) are processed directly by <strong>Razorpay</strong>. We do not store or collect your financial data on our servers.</p>
-
-            <h2>5. Data Security</h2>
-            <p>We strive to use commercially acceptable means to protect your Personal Data, but remember that no method of transmission over the internet is 100% secure.</p>
-
-            <h2>6. Children's Privacy</h2>
-            <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children.</p>
-
-            <h2>7. Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please reach out to us:</p>
-            <p>
-                <strong>Email:</strong> <a href="mailto:ujvl.dev@gmail.com">support@lumiqo.com</a><br>
-                <strong>Website:</strong> <a href="https://www.devujvl.in/">lumiqo.app</a><br>
-                <strong>Developer:</strong> Ujjaval Saini
-            </p>
+    <section id="features">
+        <div class="section-title">
+            <h2>Everything you need</h2>
+            <p>Simple tools for a complex document world.</p>
         </div>
-    </main>
+        <div class="features-grid">
+            <div class="feat-card">
+                <div class="feat-icon" style="background: rgba(124, 92, 252, 0.1); color: var(--primary);"><i class="fas fa-bolt"></i></div>
+                <h3>Fast Viewing</h3>
+                <p>Open heavy PDF files instantly with our optimized rendering engine.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon" style="background: rgba(34, 197, 94, 0.1); color: var(--green);"><i class="fas fa-eye"></i></div>
+                <h3>Night Mode</h3>
+                <p>Comfortable reading for your eyes with advanced dark mode support.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon" style="background: rgba(245, 166, 35, 0.1); color: var(--orange);"><i class="fas fa-star"></i></div>
+                <h3>Favorites</h3>
+                <p>Bookmark your important documents for one-tap access anytime.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon" style="background: rgba(224, 71, 62, 0.1); color: var(--red);"><i class="fas fa-shield-alt"></i></div>
+                <h3>Secure</h3>
+                <p>Your documents stay on your device. We never upload your data.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="premium" class="premium">
+        <div class="premium-box">
+            <div class="premium-info">
+                <span style="color: var(--orange); font-weight: 800; font-size: 12px; letter-spacing: 2px;">GO PRO</span>
+                <h2 style="font-size: 42px; margin-top: 10px;">Lumiqo Premium</h2>
+                <p>Unlock the full power of PDF tools and professional features.</p>
+                <ul class="premium-list">
+                    <li><i class="fas fa-check-circle"></i> Merge & Split Unlimited Files</li>
+                    <li><i class="fas fa-check-circle"></i> High Quality Image to PDF</li>
+                    <li><i class="fas fa-check-circle"></i> Protect Files with Passwords</li>
+                    <li><i class="fas fa-check-circle"></i> PDF to Office Conversions</li>
+                    <li><i class="fas fa-check-circle"></i> Cloud Backup & Sync</li>
+                </ul>
+                <a href="#premium" class="btn-download">Upgrade Today</a>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <i class="fas fa-crown" style="font-size: 180px; color: var(--orange); opacity: 0.2;"></i>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta">
+        <h2>Ready to experience Lumiqo?</h2>
+        <p style="margin-bottom: 30px; opacity: 0.9;">Join thousands of users who read smarter every day.</p>
+        <a href="https://play.google.com/store" class="btn-download">Get it on Play Store</a>
+    </div>
 
     <footer>
-        <span class="footer-logo">Lumiqo Labs</span>
-        <p class="copyright">© 2026 Lumiqo PDF Reader. Read Smarter.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 20px;">Lumiqo</a>
+                <p style="font-size: 14px;">Lumiqo Labs is dedicated to building the world's most intuitive and fast PDF reading experience.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#premium">Pricing</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="mailto:support@lumiqo.com">Help Center</a></li>
+                    <li><a href="licenses.html">Open Source</a></li>
+                    <li><a href="mailto:support@lumiqo.com">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p style="color: var(--text-tertiary); font-size: 14px;">&copy; 2026 Lumiqo Labs. Built by Ujjaval Saini.</p>
+            <div class="social-links">
+                <a href="https://github.com/ujjaval01" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/code.ujvl/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/ujjavalsaini" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
     </footer>
 
 </body>

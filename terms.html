@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Lumiqo PDF Reader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0A0C;
+            --surface: #18181C;
+            --card: #1C1C21;
+            --primary: #7C5CFC;
+            --primary-light: #9C85FF;
+            --text-primary: #F5F5F7;
+            --text-secondary: #9A9AA2;
+            --text-tertiary: #6B6B73;
+            --accent: #F5A623;
+            --red: #E0473E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 10% 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #FFF, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Content */
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px 100px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: 22px;
+            color: var(--primary-light);
+            margin: 40px 0 20px;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        ul {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .alert-box {
+            background: rgba(224, 71, 62, 0.05);
+            border-left: 4px solid var(--red);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 30px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .copyright {
+            color: var(--text-tertiary);
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .content-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">L</div>
+            Lumiqo
+        </a>
+    </nav>
+
+    <header class="hero">
+        <h1>Terms & Conditions</h1>
+        <p>Please read these terms carefully before using the Lumiqo application.</p>
+    </header>
+
+    <main class="container">
+        <div class="content-card">
+            <p><strong>Last Updated:</strong> June 21, 2026</p>
+
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading or using the Lumiqo PDF Reader app, these terms will automatically apply to you. You should make sure therefore that you read them carefully before using the app.</p>
+
+            <h2>2. License to Use</h2>
+            <p>Lumiqo Labs grants you a personal, non-exclusive, non-transferable, limited license to download, install and use the app strictly in accordance with the terms of this agreement.</p>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Modify, make derivative works of, disassemble or reverse engineer any part of the app.</li>
+                <li>Use the app for any illegal or unauthorized purpose.</li>
+                <li>Remove or obscure any proprietary notice (including copyright or trademark) of Lumiqo Labs.</li>
+            </ul>
+
+            <h2>3. Premium Subscriptions</h2>
+            <p>Lumiqo offers premium features through paid subscriptions. Payments are processed via <strong>Razorpay</strong>.</p>
+            <ul>
+                <li>Subscriptions are non-refundable except where required by law.</li>
+                <li>Prices are subject to change, but we will notify you in advance.</li>
+                <li>You are responsible for maintaining the security of your payment methods.</li>
+            </ul>
+
+            <div class="alert-box">
+                <p><strong>Disclaimer:</strong> Lumiqo is provided "AS IS" without warranty of any kind. We do not guarantee that the app will always be error-free or uninterrupted.</p>
+            </div>
+
+            <h2>4. User Content</h2>
+            <p>You retain all rights to the PDF documents you open with the app. Lumiqo does not claim ownership of your files. You are solely responsible for the content of your documents and ensuring you have the legal right to view or modify them.</p>
+
+            <h2>5. Intellectual Property</h2>
+            <p>The app and its original content (excluding user documents), features, and functionality are and will remain the exclusive property of Lumiqo Labs and its licensors. Our trademarks may not be used in connection with any product or service without prior written consent.</p>
+
+            <h2>6. Limitation of Liability</h2>
+            <p>In no event shall Lumiqo Labs be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, or other intangible losses, resulting from your access to or use of or inability to access or use the app.</p>
+
+            <h2>7. Changes to Terms</h2>
+            <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect.</p>
+
+            <h2>8. Contact Us</h2>
+            <p>If you have any questions about these Terms, please contact us at <a href="mailto:support@lumiqo.com" style="color:var(--primary-light)">support@lumiqo.com</a>.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright">© 2026 Lumiqo Labs. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
