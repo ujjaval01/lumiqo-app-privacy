@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Lumiqo PDF Reader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0A0C;
+            --surface: #18181C;
+            --card: #1C1C21;
+            --primary: #7C5CFC;
+            --primary-light: #9C85FF;
+            --text-primary: #F5F5F7;
+            --text-secondary: #9A9AA2;
+            --text-tertiary: #6B6B73;
+            --accent: #F5A623;
+            --green: #22C55E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Waves */
+        .waves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        nav {
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .btn-app {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-app:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(124, 92, 252, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 10% 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #FFF, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px 100px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: var(--primary-light);
+            margin: 40px 0 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: var(--text-primary);
+            margin: 25px 0 10px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: rgba(124, 92, 252, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: var(--bg);
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            color: var(--text-tertiary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .copyright {
+            color: var(--text-tertiary);
+            font-size: 12px;
+        }
+
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .content-card { padding: 30px 20px; }
+            nav { padding: 15px 5%; }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <svg class="waves" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#7C5CFC" fill-opacity="0.05" d="M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,122.7C672,128,768,192,864,202.7C960,213,1056,171,1152,149.3C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon">L</div>
+            Lumiqo
+        </a>
+
+        <!--  uncomment when the app launch on the playstore -->
+        <!-- <a href="https://play.google.com/store" class="btn-app">Download App</a> -->
+    </nav>
+
+    <header class="hero animate">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is our priority. Learn how Lumiqo Labs handles your data with transparency and security.</p>
+    </header>
+
+    <main class="container animate" style="animation-delay: 0.2s;">
+        <div class="content-card">
+            <p><strong>Effective Date:</strong> June 22, 2026<br>
+            <strong>Last Updated:</strong> June 22, 2026</p>
+
+            <p>Lumiqo Labs ("we," "our," or "us") operates the Lumiqo PDF Reader mobile application (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service.</p>
+
+            <div class="highlight-box">
+                <p><strong>Strict Privacy Commitment:</strong> Lumiqo does not collect, upload, or share the content of your PDF files. All document processing happens locally on your device.</p>
+            </div>
+
+            <h2>1. Information Collection and Use</h2>
+            <p>We do not collect any personal data from you unless you explicitly provide it (e.g., when sending feedback). Lumiqo is designed to be a privacy-first application.</p>
+
+            <h3>A. Personal Data</h3>
+            <p>While using our Service, we may ask you to provide certain identifiers for specific features:</p>
+            <ul>
+                <li>Email address (only if you contact support)</li>
+                <li>Phone number (only for payment processing via Razorpay)</li>
+                <li>Usage Data (anonymized crash reports via Google)</li>
+            </ul>
+
+            <h2>2. Permissions</h2>
+            <p>To provide its functionality, Lumiqo requires the following permissions on your Android device:</p>
+            <ul>
+                <li><strong>Storage/Media Access:</strong> Required to find, open, and display PDF files saved on your device.</li>
+                <li><strong>Internet Access:</strong> Required for premium subscription processing and checking for app updates.</li>
+            </ul>
+
+            <h2>3. Third-Party Services</h2>
+            <p>We use trusted third-party providers to facilitate premium features and app stability:</p>
+            <ul>
+                <li><strong>Razorpay:</strong> Processes premium subscriptions securely. They are PCI-DSS compliant. <a href="https://razorpay.com/privacy/">View Policy</a></li>
+                <li><strong>Google Play Services:</strong> Used for app distribution and crash monitoring.</li>
+            </ul>
+
+            <h2>4. Payment Security</h2>
+            <p>When you purchase Lumiqo Premium, your payment details (Credit Card, UPI, etc.) are processed directly by <strong>Razorpay</strong>. We do not store or collect your financial data on our servers.</p>
+
+            <h2>5. Data Security</h2>
+            <p>We strive to use commercially acceptable means to protect your Personal Data, but remember that no method of transmission over the internet is 100% secure.</p>
+
+            <h2>6. Children's Privacy</h2>
+            <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children.</p>
+
+            <h2>7. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please reach out to us:</p>
+            <p>
+                <strong>Email:</strong> <a href="mailto:ujvl.dev@gmail.com">support@lumiqo.com</a><br>
+                <strong>Website:</strong> <a href="https://www.devujvl.in/">lumiqo.app</a><br>
+                <strong>Developer:</strong> Ujjaval Saini
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <span class="footer-logo">Lumiqo Labs</span>
+        <p class="copyright">© 2026 Lumiqo PDF Reader. Read Smarter.</p>
+    </footer>
+
+</body>
+</html>
