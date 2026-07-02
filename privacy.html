@@ -220,12 +220,12 @@
     <main class="container">
         <div class="content-card">
             <p><strong>Effective Date:</strong> June 21, 2026<br>
-            <strong>Last Updated:</strong> June 21, 2026</p>
+            <strong>Last Updated:</strong> July 3, 2026</p>
 
             <p>Lumiqo Labs ("we," "our," or "us") operates the Lumiqo PDF Reader mobile application. This Privacy Policy informs you of our practices regarding the handling of your information.</p>
 
             <div class="highlight-box">
-                <p><strong>Strict Privacy Commitment:</strong> Lumiqo is a local utility. We do NOT collect, upload, or share the content of your PDF files. All processing (merging, reading, and renaming) occurs strictly on your device.</p>
+                <p><strong>Strict Privacy Commitment:</strong> Lumiqo is a local utility. We do NOT collect, upload, or share the content of your PDF files. All processing (reading, favoriting, renaming, and deleting) occurs strictly on your device.</p>
             </div>
 
             <h2>1. Information We Handle</h2>
@@ -235,18 +235,19 @@
             <p>The app processes PDF documents. These files never leave your device. We do not have access to your documents.</p>
 
             <h3>B. Locally Stored Data</h3>
-            <p>To improve your experience, the following data is stored <strong>only</strong> on your device (using Jetpack DataStore):</p>
+            <p>To improve your experience, the following data is stored <strong>only</strong> on your device (using Jetpack Room Database and DataStore):</p>
             <ul>
-                <li>Reading Goals & Progress (Minutes read per day)</li>
+                <li>Reading Goals & Progress (Minutes read per day, page bookmark status)</li>
                 <li>App Preferences (Theme selection, Language settings)</li>
-                <li>Library Metadata (Recent files and Favorites)</li>
+                <li>Library Metadata (Recent files and Favorites list)</li>
             </ul>
 
             <h2>2. Device Permissions</h2>
-            <p>To provide its core functionality as a file manager and editor, Lumiqo requires:</p>
+            <p>To provide its core functionality as a PDF document reader, Lumiqo requires permissions based on the Android OS version running on your device:</p>
             <ul>
-                <li><strong>All Files Access (MANAGE_EXTERNAL_STORAGE):</strong> Essential for scanning your device to build your PDF library and allowing the app to merge/save documents to public folders.</li>
-                <li><strong>Internet & Notifications:</strong> Required to deliver important app updates, feature announcements, and reading reminders via Firebase Cloud Messaging.</li>
+                <li><strong>Storage Access (Android 12 and below):</strong> Requires standard storage read permissions (and write permission where required on older versions) to scan your device's external storage, build your local PDF library, and support renaming and deletion.</li>
+                <li><strong>Scoped Storage & System File Selection (Android 13+):</strong> No broad external storage permissions are requested at runtime. The app accesses indexed PDF documents via the system MediaStore and secure System File Pickers (Storage Access Framework) to ensure your data remains sandboxed and protected.</li>
+                <li><strong>Internet & Notifications:</strong> Required to deliver notifications, announcements, and daily reading goal reminders via Firebase Cloud Messaging.</li>
             </ul>
 
             <h2>3. Third-Party Services</h2>
@@ -257,7 +258,7 @@
             </ul>
 
             <h2>4. Monetization & Payments</h2>
-            <p>Lumiqo Premium features (future update) are processed via <strong>Razorpay</strong>. We do not store or see your credit card or financial identifiers on our servers.</p>
+            <p>Lumiqo Premium features are processed securely via <strong>Razorpay</strong>. We do not store or see your credit card or financial identifiers on our servers.</p>
 
             <h2>5. Children's Privacy</h2>
             <p>Lumiqo does not knowingly collect any personal information from children under the age of 13. Our app is a general productivity tool.</p>
