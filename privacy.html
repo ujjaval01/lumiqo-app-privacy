@@ -3,22 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Lumiqo PDF Reader</title>
+    <title>Privacy Policy — Lumiqo PDF Reader</title>
+    <meta name="description" content="Lumiqo PDF Reader Privacy Policy. Learn how Lumiqo keeps your documents 100% private and on-device.">
+    <meta name="theme-color" content="#0A0A0C">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
-            --bg: #0A0A0C;
-            --surface: #18181C;
-            --card: #1C1C21;
+            --bg-dark: #0A0A0C;
+            --surface: #141418;
+            --card-bg: #1A1A22;
+
             --primary: #7C5CFC;
-            --primary-light: #9C85FF;
-            --text-primary: #F5F5F7;
-            --text-secondary: #9A9AA2;
-            --text-tertiary: #6B6B73;
-            --accent: #F5A623;
-            --green: #22C55E;
+            --primary-light: #A78BFA;
+            --primary-dark: #5B3FE0;
+
+            --orange: #FBBF24;
+            --green: #4ADE80;
+            --blue: #60A5FA;
+
+            --text-primary: #FFFFFF;
+            --text-secondary: #D1D1D8;
+            --text-tertiary: #9CA3AF;
+
+            --border-color: #26262E;
+            --radius-md: 16px;
+            --radius-xl: 24px;
         }
 
         * {
@@ -28,253 +45,332 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
             color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.7;
+            min-height: 100vh;
         }
 
+        /* Navigation */
         nav {
-            padding: 20px 10%;
+            padding: 18px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(10px);
+            background: #0E0E12;
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
-            font-weight: 800;
-            font-size: 24px;
-            color: var(--primary-light);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 22px;
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 18px;
+            box-shadow: 0 4px 16px rgba(124, 92, 252, 0.4);
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
             background: var(--primary);
-            border-radius: 8px;
-            display: grid;
-            place-items: center;
-            color: white;
-            font-size: 18px;
+            padding: 10px 22px;
+            border-radius: 50px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(124, 92, 252, 0.4);
         }
 
-        .hero {
-            padding: 80px 10% 40px;
+        .btn-back:hover {
+            background: #6B46FF;
+            transform: translateY(-2px);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 60px 8% 40px;
             text-align: center;
+            background: #0E0E14;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .hero h1 {
-            font-size: 48px;
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(74, 222, 128, 0.15);
+            border: 1px solid rgba(74, 222, 128, 0.4);
+            color: var(--green);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .page-title {
+            font-size: clamp(32px, 5vw, 52px);
             font-weight: 800;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, #FFF, var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #FFFFFF;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
         }
 
-        .hero p {
+        .page-subtitle {
             color: var(--text-secondary);
-            font-size: 18px;
-            max-width: 600px;
+            font-size: 17px;
+            max-width: 680px;
             margin: 0 auto;
+            font-weight: 500;
         }
 
+        .meta-dates {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+            background: rgba(255, 255, 255, 0.05);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Content Container */
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px 100px;
+            padding: 40px 8% 100px;
         }
 
         .content-card {
             background: var(--surface);
-            border-radius: 24px;
-            padding: 50px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight-box {
+            background: #1D1830;
+            border-left: 4px solid var(--primary);
+            padding: 24px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 30px 0 40px;
+            border-top: 1px solid rgba(124, 92, 252, 0.2);
+            border-right: 1px solid rgba(124, 92, 252, 0.2);
+            border-bottom: 1px solid rgba(124, 92, 252, 0.2);
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.6;
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 22px;
             color: var(--primary-light);
             margin: 40px 0 20px;
             font-weight: 700;
             display: flex;
             align-items: center;
             gap: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        h2::before {
-            content: '';
-            width: 4px;
-            height: 24px;
-            background: var(--primary);
-            border-radius: 2px;
+        h2 i {
+            font-size: 20px;
         }
 
         h3 {
-            font-size: 18px;
-            color: var(--text-primary);
-            margin: 25px 0 10px;
+            font-size: 17px;
+            color: #FFFFFF;
+            margin: 24px 0 12px;
+            font-weight: 700;
         }
 
         p {
             color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 16px;
+            margin-bottom: 18px;
+            font-size: 15px;
         }
 
         ul {
             list-style: none;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
 
         li {
             color: var(--text-secondary);
             margin-bottom: 12px;
-            padding-left: 25px;
+            padding-left: 28px;
             position: relative;
+            font-size: 15px;
         }
 
         li::before {
-            content: '✔';
+            content: '✓';
             position: absolute;
             left: 0;
             color: var(--green);
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 16px;
         }
 
-        .highlight-box {
-            background: rgba(124, 92, 252, 0.05);
-            border-left: 4px solid var(--primary);
-            padding: 20px;
-            border-radius: 0 12px 12px 0;
-            margin: 30px 0;
+        .contact-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-top: 20px;
         }
 
-        .highlight-box p {
-            margin-bottom: 0;
-            font-style: italic;
-            color: var(--text-primary);
+        .contact-box p {
+            color: #FFFFFF;
+            margin-bottom: 8px;
         }
 
+        .contact-box a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            background: var(--bg);
+            padding: 50px 8% 40px;
+            border-top: 1px solid var(--border-color);
+            background: #08080A;
         }
 
         .footer-logo {
-            font-weight: 700;
-            color: var(--text-tertiary);
-            margin-bottom: 10px;
-            display: block;
+            font-weight: 800;
+            font-size: 20px;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+            display: inline-block;
         }
 
         .copyright {
             color: var(--text-tertiary);
-            font-size: 12px;
-        }
-
-        a {
-            color: var(--primary-light);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            font-size: 14px;
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .content-card { padding: 30px 20px; }
-            nav { padding: 15px 5%; }
+            .content-card { padding: 28px 20px; }
+            nav { padding: 16px 5%; }
+            .container { padding: 20px 4% 60px; }
+            .page-header { padding: 40px 5% 30px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">
-            <div class="logo-icon">L</div>
-            Lumiqo
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-file-pdf"></i></div>
+            <span>Lumiqo</span>
         </a>
+        <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </nav>
 
-    <header class="hero">
-        <h1>Privacy Policy</h1>
-        <p>Your privacy is our priority. Lumiqo is designed to be a local-first application where your documents remain your own.</p>
+    <header class="page-header">
+        <div class="badge-pill">
+            <i class="fas fa-shield-halved"></i> Privacy First Application
+        </div>
+        <h1 class="page-title">Privacy Policy</h1>
+        <p class="page-subtitle">Your privacy is our highest priority. Lumiqo is built to be a local-first PDF utility where your documents remain 100% your own.</p>
+        <div class="meta-dates">
+            <strong>Effective Date:</strong> June 21, 2026 &nbsp;•&nbsp; <strong>Last Updated:</strong> July 3, 2026
+        </div>
     </header>
 
     <main class="container">
         <div class="content-card">
-            <p><strong>Effective Date:</strong> June 21, 2026<br>
-            <strong>Last Updated:</strong> July 3, 2026</p>
-
-            <p>Lumiqo Labs ("we," "our," or "us") operates the Lumiqo PDF Reader mobile application. This Privacy Policy informs you of our practices regarding the handling of your information.</p>
+            <p>Lumiqo Labs ("we," "our," or "us") operates the Lumiqo PDF Reader mobile application for Android. This Privacy Policy informs you of our practices regarding the handling, storage, and protection of your data.</p>
 
             <div class="highlight-box">
-                <p><strong>Strict Privacy Commitment:</strong> Lumiqo is a local utility. We do NOT collect, upload, or share the content of your PDF files. All processing (reading, favoriting, renaming, and deleting) occurs strictly on your device.</p>
+                <p><strong><i class="fas fa-lock" style="color: var(--primary-light); margin-right: 6px;"></i> Strict Privacy Commitment:</strong> Lumiqo is a local utility. We do NOT collect, upload, transmit, or share the content of your PDF files. All processing (reading, favoriting, renaming, deleting, merging, splitting, compressing, and converting) occurs strictly on your device.</p>
             </div>
 
-            <h2>1. Information We Handle</h2>
-            <p>Lumiqo is designed to function without requiring personal user accounts.</p>
+            <h2><i class="fas fa-database" style="color: var(--primary-light);"></i> 1. Information We Handle</h2>
+            <p>Lumiqo is designed to function seamlessly without requiring personal user account creation.</p>
 
             <h3>A. User-Generated Content (PDFs)</h3>
-            <p>The app processes PDF documents. These files never leave your device. We do not have access to your documents.</p>
+            <p>The app reads and processes your PDF documents locally. These files never leave your device memory. We do not have access to your private files, reading materials, or documents.</p>
 
             <h3>B. Locally Stored Data</h3>
-            <p>To improve your experience, the following data is stored <strong>only</strong> on your device (using Jetpack Room Database and DataStore):</p>
+            <p>To deliver a personalized experience, the following data is stored <strong>exclusively on your device</strong> using Jetpack Room Database and DataStore preferences:</p>
             <ul>
-                <li>Reading Goals & Progress (Minutes read per day, page bookmark status)</li>
-                <li>App Preferences (Theme selection, Language settings)</li>
-                <li>Library Metadata (Recent files and Favorites list)</li>
+                <li>Reading Progress & Memory (Last read page, total minutes read per day, and page bookmarks)</li>
+                <li>App Preferences (Light, Dark, or Sepia theme selections, layout settings)</li>
+                <li>Library Metadata (Recent file history and Favorites list)</li>
             </ul>
 
-            <h2>2. Device Permissions</h2>
-            <p>To provide its core functionality as a PDF document reader, Lumiqo requires permissions based on the Android OS version running on your device:</p>
+            <h2><i class="fas fa-mobile-screen-button" style="color: var(--orange);"></i> 2. Device Permissions</h2>
+            <p>To provide core PDF document viewing and editing functionality, Lumiqo requests standard Android system permissions:</p>
             <ul>
-                <li><strong>Storage Access (Android 12 and below):</strong> Requires standard storage read permissions (and write permission where required on older versions) to scan your device's external storage, build your local PDF library, and support renaming and deletion.</li>
-                <li><strong>Scoped Storage & System File Selection (Android 13+):</strong> No broad external storage permissions are requested at runtime. The app accesses indexed PDF documents via the system MediaStore and secure System File Pickers (Storage Access Framework) to ensure your data remains sandboxed and protected.</li>
-                <li><strong>Internet & Notifications:</strong> Required to deliver notifications, announcements, and daily reading goal reminders via Firebase Cloud Messaging.</li>
+                <li><strong>Storage Access (Android 12 and below):</strong> Standard external storage read/write permissions to scan storage, index your local PDF library, and support file renaming and safe deletion.</li>
+                <li><strong>Scoped Storage & File Picker (Android 13+):</strong> No broad storage permissions required at runtime. Uses system MediaStore indexing and secure Storage Access Framework (SAF) pickers so your documents remain sandboxed.</li>
+                <li><strong>Internet & Notifications:</strong> Required to deliver system announcements, updates, and optional daily reading goal reminders via Firebase Cloud Messaging.</li>
             </ul>
 
-            <h2>3. Third-Party Services</h2>
-            <p>We use trusted industry providers solely for app maintenance and communication:</p>
+            <h2><i class="fas fa-cloud" style="color: var(--blue);"></i> 3. Third-Party Services</h2>
+            <p>We use trusted industry providers solely for essential app distribution, messaging, and maintenance:</p>
             <ul>
-                <li><strong>Firebase Cloud Messaging (FCM):</strong> Sends push notifications. FCM may collect an anonymous "Instance ID" to deliver messages.</li>
-                <li><strong>Google Play Services:</strong> Used for secure app distribution and crash reporting.</li>
+                <li><strong>Firebase Cloud Messaging (FCM):</strong> Delivers broadcast push notifications and system updates. FCM may use an anonymous "Instance ID" token to deliver messages.</li>
+                <li><strong>Google Play Services:</strong> Used for secure app distribution, update checks, and crash analytics.</li>
             </ul>
 
-            <h2>4. Monetization & Payments</h2>
-            <p>Lumiqo Premium features are processed securely via <strong>Razorpay</strong>. We do not store or see your credit card or financial identifiers on our servers.</p>
+            <h2><i class="fas fa-credit-card" style="color: var(--green);"></i> 4. Monetization & Payments</h2>
+            <p>In-app upgrades for Lumiqo Pro are processed securely through <strong>Razorpay</strong> and Google Play Billing. We do not store, process, or see your credit card details or financial identifiers on our servers.</p>
 
-            <h2>5. Children's Privacy</h2>
-            <p>Lumiqo does not knowingly collect any personal information from children under the age of 13. Our app is a general productivity tool.</p>
+            <h2><i class="fas fa-child" style="color: var(--primary-light);"></i> 5. Children's Privacy</h2>
+            <p>Lumiqo is a general productivity application and does not knowingly collect any personal identifiable information from children under the age of 13.</p>
 
-            <h2>6. Contact Us</h2>
-            <p>If you have any questions regarding this policy, please reach out to us:</p>
-            <p>
-                <strong>Email:</strong> <a href="mailto:ujvl.dev@gmail.com">ujvl.dev@gmail.com</a><br>
-                <strong>Developer:</strong> Ujjaval Saini
-            </p>
+            <h2><i class="fas fa-envelope" style="color: var(--primary-light);"></i> 6. Contact Us</h2>
+            <p>If you have any questions, suggestions, or concerns regarding this Privacy Policy, please contact us directly:</p>
+
+            <div class="contact-box">
+                <p><strong>Email:</strong> <a href="mailto:ujvl.dev@gmail.com">ujvl.dev@gmail.com</a></p>
+                <p style="margin-bottom: 0;"><strong>Developer:</strong> Ujjaval Saini (Lumiqo Labs)</p>
+            </div>
         </div>
     </main>
 
     <footer>
         <span class="footer-logo">Lumiqo Labs</span>
-        <p class="copyright">© 2026 Lumiqo PDF Reader. Read Smarter.</p>
+        <p class="copyright">© 2026 Lumiqo PDF Reader. Designed & Built by Ujjaval Saini.</p>
     </footer>
 
 </body>

@@ -3,280 +3,1513 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumiqo - The Ultimate PDF Experience</title>
+    <title>Lumiqo — Ultimate Android PDF Reader & Utility Suite</title>
+    <meta name="description" content="Lumiqo is the modern, lightning-fast PDF reader and document utility suite for Android. Merge, split, compress, convert, protect, sign, and read PDFs with 100% on-device privacy.">
+    <meta name="theme-color" content="#0A0A0C">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
-            --bg: #0A0A0C;
-            --surface: #18181C;
-            --card: #1C1C21;
+            --bg-dark: #0A0A0C;
+            --surface: #141418;
+            --surface-variant: #1C1C22;
+            --card-bg: #1A1A22;
+
             --primary: #7C5CFC;
-            --primary-light: #9C85FF;
+            --primary-light: #A78BFA;
             --primary-dark: #5B3FE0;
-            --text-primary: #F5F5F7;
-            --text-secondary: #9A9AA2;
-            --text-tertiary: #6B6B73;
-            --orange: #F5A623;
-            --green: #22C55E;
-            --red: #E0473E;
+            --primary-glow: rgba(124, 92, 252, 0.4);
+
+            --orange: #FBBF24;
+            --green: #4ADE80;
+            --red: #F87171;
+            --blue: #60A5FA;
+            --pink: #F472B6;
+
+            --text-primary: #FFFFFF;
+            --text-secondary: #D1D1D8;
+            --text-tertiary: #9CA3AF;
+
+            --border-color: #26262E;
+            --border-hover: rgba(124, 92, 252, 0.5);
+
+            --radius-sm: 12px;
+            --radius-md: 18px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
         }
 
-        /* Nav */
+        body {
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-color: #0A0A0C;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+
+        /* Typography Utilities */
+        .gradient-text {
+            color: #A78BFA;
+            background: linear-gradient(135deg, #FFFFFF 0%, #C4B5FD 50%, #A78BFA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navigation */
         nav {
-            padding: 20px 8%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(15px);
-            position: fixed;
-            top: 0; width: 100%; z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: #0E0E12;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
         }
+
         .logo {
-            font-weight: 800; font-size: 24px; color: #fff;
-            display: flex; align-items: center; gap: 12px; text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -0.5px;
         }
-        .logo-box {
-            width: 36px; height: 36px; background: var(--primary);
-            border-radius: 10px; display: grid; place-items: center;
-            box-shadow: 0 0 20px rgba(124, 92, 252, 0.4);
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 20px;
+            box-shadow: 0 4px 20px var(--primary-glow);
         }
-        .nav-links { display: flex; gap: 30px; align-items: center; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
         .nav-links a {
-            text-decoration: none; color: var(--text-secondary);
-            font-size: 14px; font-weight: 500; transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--primary-light); }
-        .btn-download {
-            background: var(--primary); color: #fff; padding: 12px 24px;
-            border-radius: 14px; font-weight: 600; transition: 0.3s;
-            text-decoration: none; font-size: 14px;
-        }
-        .btn-download:hover {
-            background: var(--primary-light); transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(124, 92, 252, 0.3);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
         }
 
-        /* Hero */
-        section { padding: 100px 8%; }
-        .hero {
-            padding-top: 180px; text-align: center;
-            background: radial-gradient(circle at top, rgba(124, 92, 252, 0.15) 0%, transparent 50%);
+        .nav-links a:hover {
+            color: #FFFFFF;
         }
-        .hero h1 {
-            font-size: clamp(40px, 6vw, 72px); font-weight: 800; line-height: 1.1;
-            margin-bottom: 24px; letter-spacing: -1px;
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .hero h1 span { color: var(--primary-light); }
-        .hero p {
-            font-size: 20px; color: var(--text-secondary); max-width: 700px;
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 8px 24px var(--primary-glow);
+            border: 1px solid rgba(255,255,255,0.15);
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(124, 92, 252, 0.5);
+            background: linear-gradient(135deg, #8B6BFF 0%, var(--primary) 100%);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--surface);
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-variant);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 22px;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 150px 6% 80px;
+            text-align: center;
+            position: relative;
+            background: #0E0E14;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(124, 92, 252, 0.18);
+            border: 1px solid rgba(124, 92, 252, 0.4);
+            color: var(--primary-light);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 28px;
+        }
+
+        .hero-title {
+            font-size: clamp(38px, 6vw, 68px);
+            font-weight: 800;
+            line-height: 1.15;
+            color: #FFFFFF;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-secondary);
+            max-width: 740px;
             margin: 0 auto 40px;
-        }
-        .hero-btns { display: flex; justify-content: center; gap: 20px; }
-        .app-mockup {
-            margin-top: 80px; position: relative; max-width: 400px; margin-left: auto; margin-right: auto;
-        }
-        .mockup-img {
-            width: 100%; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-            transition: 0.5s;
-        }
-        .mockup-img:hover {
-            transform: scale(1.05) rotate(2deg);
+            font-weight: 500;
+            line-height: 1.6;
         }
 
-        /* Features */
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 36px; font-weight: 700; margin-bottom: 10px; }
-        .section-title p { color: var(--text-secondary); font-size: 18px; }
-
-        .features-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-        .feat-card {
-            background: var(--surface); padding: 40px; border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.03); transition: 0.3s;
-        }
-        .feat-card:hover {
-            transform: translateY(-10px); border-color: rgba(124, 92, 252, 0.2);
-            background: var(--card);
-        }
-        .feat-icon {
-            width: 50px; height: 50px; border-radius: 12px; margin-bottom: 20px;
-            display: grid; place-items: center; font-size: 20px;
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
         }
 
-        /* Premium */
-        .premium { background: var(--surface); border-radius: 40px; }
-        .premium-box {
-            display: flex; flex-wrap: wrap; gap: 60px; align-items: center;
+        /* Mockup Visual */
+        .hero-visual-wrapper {
+            position: relative;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .premium-info { flex: 1; min-width: 300px; }
-        .premium-list { list-style: none; margin: 30px 0; }
-        .premium-list li {
-            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
+
+        .mockup-card {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            padding: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Simulated App Screen Header */
+        .app-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .app-topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 16px;
+        }
+
+        .app-title-text {
+            font-size: 18px;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+
+        .app-topbar-actions {
+            display: flex;
+            gap: 12px;
             color: var(--text-secondary);
         }
-        .premium-list i { color: var(--green); font-size: 18px; }
 
-        /* CTA */
-        .cta {
-            text-align: center; background: linear-gradient(45deg, var(--primary-dark), var(--primary));
-            border-radius: 40px; margin: 0 8% 100px; padding: 80px 40px;
+        /* App Quick Tools Grid Preview */
+        .app-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            text-align: left;
         }
-        .cta h2 { font-size: 42px; margin-bottom: 20px; }
-        .cta .btn-download { background: #fff; color: var(--primary); font-size: 18px; padding: 16px 40px; }
-        .cta .btn-download:hover { background: #f0f0f0; color: var(--primary-dark); }
+
+        .app-tool-card {
+            background: var(--card-bg);
+            padding: 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .app-tool-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            background: var(--surface-variant);
+        }
+
+        .app-tool-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .app-tool-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 2px;
+        }
+
+        .app-tool-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Stats Bar */
+        .stats-section {
+            padding: 40px 6%;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--primary-light);
+            margin-bottom: 4px;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* General Section Layout */
+        section {
+            padding: 100px 6%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            color: var(--primary-light);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Feature Cards Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feat-card {
+            background: var(--surface);
+            padding: 36px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .feat-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            background: var(--card-bg);
+        }
+
+        .feat-icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 24px;
+        }
+
+        .feat-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        .feat-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Tools Filter Tabs */
+        .tools-filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--surface);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px var(--primary-glow);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tool-box {
+            background: var(--surface);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .tool-box:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            background: var(--card-bg);
+        }
+
+        .tool-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tool-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .tool-badge {
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .badge-free {
+            background: rgba(74, 222, 128, 0.18);
+            color: var(--green);
+            border: 1px solid rgba(74, 222, 128, 0.4);
+        }
+
+        .badge-pro {
+            background: rgba(251, 191, 36, 0.18);
+            color: var(--orange);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+        }
+
+        .tool-box h4 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+
+        .tool-box p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Reader Showcase Banner */
+        .reader-showcase {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showcase-content h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .showcase-list {
+            list-style: none;
+            margin: 28px 0;
+        }
+
+        .showcase-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .showcase-list i {
+            color: var(--primary-light);
+            font-size: 18px;
+        }
+
+        /* Premium Section */
+        .premium-card {
+            background: #181524;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            padding: 60px 6%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .premium-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .premium-info {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .premium-tag {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--orange);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .premium-info h2 {
+            font-size: clamp(32px, 4vw, 44px);
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+        }
+
+        .premium-features-list {
+            list-style: none;
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .premium-features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .premium-features-list i {
+            color: var(--green);
+            font-size: 18px;
+        }
+
+        .crown-glow {
+            font-size: 160px;
+            color: var(--orange);
+            filter: drop-shadow(0 0 30px rgba(251, 191, 36, 0.4));
+        }
+
+        /* Tech & Privacy Section */
+        .tech-privacy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tp-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .tp-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tp-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background: var(--card-bg);
+            color: #FFFFFF;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+        }
+
+        /* FAQ Section */
+        .faq-accordion {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            padding: 22px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+
+        .faq-answer {
+            padding: 0 28px 22px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-radius: var(--radius-xl);
+            margin: 0 6% 100px;
+            padding: 80px 40px;
+            text-align: center;
+            box-shadow: 0 30px 80px var(--primary-glow);
+        }
+
+        .cta-banner h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 36px;
+        }
+
+        .btn-white {
+            background: #FFFFFF;
+            color: var(--primary-dark);
+            padding: 16px 38px;
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .btn-white:hover {
+            background: #F0F0F0;
+            transform: translateY(-3px);
+        }
 
         /* Footer */
         footer {
-            padding: 80px 8% 40px; border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 80px 6% 40px;
+            background: #08080A;
+            border-top: 1px solid var(--border-color);
         }
+
         .footer-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px; margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
         }
-        .footer-col h4 { margin-bottom: 20px; font-size: 16px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col a { text-decoration: none; color: var(--text-secondary); transition: 0.2s; font-size: 14px; }
-        .footer-col a:hover { color: var(--primary-light); }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 16px;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-light);
+        }
+
         .footer-bottom {
-            display: flex; justify-content: space-between; align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-        .social-links { display: flex; gap: 20px; }
-        .social-links a { color: var(--text-tertiary); font-size: 20px; transition: 0.3s; }
-        .social-links a:hover { color: #fff; }
+
+        .footer-bottom p {
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--surface);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 992px) {
+            .reader-showcase { grid-template-columns: 1fr; gap: 40px; }
+            .tech-privacy-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .mobile-toggle { display: block; }
             section { padding: 60px 5%; }
-            .hero { padding-top: 140px; }
+            .hero-section { padding-top: 120px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation -->
     <nav>
         <a href="#" class="logo">
-            <div class="logo-box"><i class="fas fa-file-pdf"></i></div>
-            Lumiqo
+            <div class="logo-icon"><i class="fas fa-file-pdf"></i></div>
+            <span>Lumiqo</span>
         </a>
-        <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#premium">Premium</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
+
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#tools">PDF Tools</a></li>
+            <li><a href="#reader">Reader Showcase</a></li>
+            <li><a href="#privacy">Privacy First</a></li>
+            <li><a href="#premium">Premium</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+
+        <div class="nav-cta">
+            <a href="https://play.google.com/store" target="_blank" class="btn-primary">
+                <i class="fab fa-google-play"></i> Get Lumiqo App
+            </a>
+            <div class="mobile-toggle" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-        <a href="https://play.google.com/store" class="btn-download"><i class="fab fa-google-play"></i> Get App</a>
     </nav>
 
-    <header class="hero">
-        <h1>Read Smarter. <span>Read Faster.</span></h1>
-        <p>The modern PDF reader built for performance. Lumiqo gives you the power to manage, view, and transform documents effortlessly.</p>
-        <div class="hero-btns">
-            <a href="https://play.google.com/store" class="btn-download" style="padding: 16px 36px; font-size: 16px;">Download Free</a>
-            <a href="#premium" class="btn-download" style="background: var(--surface); border: 1px solid rgba(255,255,255,0.1); padding: 16px 36px; font-size: 16px;">View Premium</a>
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="badge-pill">
+            <i class="fas fa-sparkles"></i> Android PDF Reader & Document Utility Suite
         </div>
-        <div class="app-mockup">
-            <img src="logo.png" alt="Lumiqo Logo" class="mockup-img">
+
+        <h1 class="hero-title">
+            Read Smarter. Edit Faster. <br>
+            <span class="gradient-text">Master Your PDFs.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Lumiqo is built for peak performance on Android. Read documents smoothly, organize files locally, and transform PDFs with 15+ powerful built-in tools — 100% offline and secure.
+        </p>
+
+        <div class="hero-actions">
+            <a href="https://play.google.com/store" target="_blank" class="btn-primary" style="padding: 16px 36px; font-size: 16px;">
+                <i class="fab fa-google-play"></i> Download Free App
+            </a>
+            <a href="#tools" class="btn-secondary" style="padding: 16px 32px; font-size: 16px;">
+                <i class="fas fa-toolbox"></i> Explore PDF Tools
+            </a>
+            <a href="#premium" class="btn-secondary" style="padding: 16px 32px; font-size: 16px; border-color: rgba(251, 191, 36, 0.4); color: var(--orange);">
+                <i class="fas fa-crown"></i> Lumiqo Pro
+            </a>
+        </div>
+
+        <!-- Interactive Hero App Screen Mockup -->
+        <div class="hero-visual-wrapper">
+            <div class="mockup-card">
+                <div class="app-topbar">
+                    <div class="app-topbar-left">
+                        <div class="app-avatar"><i class="fas fa-file-pdf"></i></div>
+                        <div>
+                            <div class="app-title-text">Lumiqo Dashboard</div>
+                            <div style="font-size: 12px; color: var(--text-secondary);">Quick PDF Operations</div>
+                        </div>
+                    </div>
+                    <div class="app-topbar-actions">
+                        <i class="fas fa-search" style="padding: 8px;"></i>
+                        <i class="fas fa-bell" style="padding: 8px;"></i>
+                        <i class="fas fa-sliders" style="padding: 8px;"></i>
+                    </div>
+                </div>
+
+                <div class="app-tools-grid">
+                    <div class="app-tool-card">
+                        <div class="app-tool-icon" style="background: rgba(124, 92, 252, 0.2); color: var(--primary-light);">
+                            <i class="fas fa-code-merge"></i>
+                        </div>
+                        <div class="app-tool-info">
+                            <h4>Merge PDF</h4>
+                            <p>Combine multiple files in seconds</p>
+                        </div>
+                    </div>
+
+                    <div class="app-tool-card">
+                        <div class="app-tool-icon" style="background: rgba(251, 191, 36, 0.2); color: var(--orange);">
+                            <i class="fas fa-arrows-split-up-and-left"></i>
+                        </div>
+                        <div class="app-tool-info">
+                            <h4>Split PDF</h4>
+                            <p>Separate pages into new PDFs</p>
+                        </div>
+                    </div>
+
+                    <div class="app-tool-card">
+                        <div class="app-tool-icon" style="background: rgba(74, 222, 128, 0.2); color: var(--green);">
+                            <i class="fas fa-compress"></i>
+                        </div>
+                        <div class="app-tool-info">
+                            <h4>Compress PDF</h4>
+                            <p>Reduce file size without loss</p>
+                        </div>
+                    </div>
+
+                    <div class="app-tool-card">
+                        <div class="app-tool-icon" style="background: rgba(96, 165, 250, 0.2); color: var(--blue);">
+                            <i class="fas fa-signature"></i>
+                        </div>
+                        <div class="app-tool-info">
+                            <h4>Sign PDF</h4>
+                            <p>Draw and attach digital signatures</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <section id="features">
-        <div class="section-title">
-            <h2>Everything you need</h2>
-            <p>Simple tools for a complex document world.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feat-card">
-                <div class="feat-icon" style="background: rgba(124, 92, 252, 0.1); color: var(--primary);"><i class="fas fa-bolt"></i></div>
-                <h3>Fast Viewing</h3>
-                <p>Open heavy PDF files instantly with our optimized rendering engine.</p>
+    <!-- Stats Bar -->
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>On-Device Privacy & Offline First</p>
             </div>
-            <div class="feat-card">
-                <div class="feat-icon" style="background: rgba(34, 197, 94, 0.1); color: var(--green);"><i class="fas fa-eye"></i></div>
-                <h3>Night Mode</h3>
-                <p>Comfortable reading for your eyes with advanced dark mode support.</p>
+            <div class="stat-item">
+                <h3>15+</h3>
+                <p>Powerful PDF Tools Included</p>
             </div>
-            <div class="feat-card">
-                <div class="feat-icon" style="background: rgba(245, 166, 35, 0.1); color: var(--orange);"><i class="fas fa-star"></i></div>
-                <h3>Favorites</h3>
-                <p>Bookmark your important documents for one-tap access anytime.</p>
+            <div class="stat-item">
+                <h3>3</h3>
+                <p>Comfort Reading Themes</p>
             </div>
-            <div class="feat-card">
-                <div class="feat-icon" style="background: rgba(224, 71, 62, 0.1); color: var(--red);"><i class="fas fa-shield-alt"></i></div>
-                <h3>Secure</h3>
-                <p>Your documents stay on your device. We never upload your data.</p>
+            <div class="stat-item">
+                <h3>0</h3>
+                <p>Background File Uploads</p>
             </div>
         </div>
-    </section>
-
-    <section id="premium" class="premium">
-        <div class="premium-box">
-            <div class="premium-info">
-                <span style="color: var(--orange); font-weight: 800; font-size: 12px; letter-spacing: 2px;">GO PRO</span>
-                <h2 style="font-size: 42px; margin-top: 10px;">Lumiqo Premium</h2>
-                <p>Unlock the full power of PDF tools and professional features.</p>
-                <ul class="premium-list">
-                    <li><i class="fas fa-check-circle"></i> Merge & Split Unlimited Files</li>
-                    <li><i class="fas fa-check-circle"></i> High Quality Image to PDF</li>
-                    <li><i class="fas fa-check-circle"></i> Protect Files with Passwords</li>
-                    <li><i class="fas fa-check-circle"></i> PDF to Office Conversions</li>
-                    <li><i class="fas fa-check-circle"></i> Cloud Backup & Sync</li>
-                </ul>
-                <a href="#premium" class="btn-download">Upgrade Today</a>
-            </div>
-            <div style="flex: 1; text-align: center;">
-                <i class="fas fa-crown" style="font-size: 180px; color: var(--orange); opacity: 0.2;"></i>
-            </div>
-        </div>
-    </section>
-
-    <div class="cta">
-        <h2>Ready to experience Lumiqo?</h2>
-        <p style="margin-bottom: 30px; opacity: 0.9;">Join thousands of users who read smarter every day.</p>
-        <a href="https://play.google.com/store" class="btn-download">Get it on Play Store</a>
     </div>
 
+    <!-- Core Features Section -->
+    <section id="features">
+        <div class="section-header">
+            <span class="section-tag">Engineered For Perfection</span>
+            <h2 class="section-title">Everything You Need For PDFs</h2>
+            <p class="section-desc">A complete document suite built from the ground up using Kotlin, Jetpack Compose, and modern Android architecture.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feat-card">
+                <div class="feat-icon-box" style="background: rgba(124, 92, 252, 0.2); color: var(--primary-light);">
+                    <i class="fas fa-gauge-high"></i>
+                </div>
+                <h3>Ultra-Fast Viewing</h3>
+                <p>Render heavy multi-page documents instantly with hardware-accelerated PDFBox and native Android rendering engines.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon-box" style="background: rgba(251, 191, 36, 0.2); color: var(--orange);">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <h3>3 Comfort Reading Modes</h3>
+                <p>Toggle seamlessly between Light, Dark, and Sepia themes to protect your eyes during extended night reading sessions.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon-box" style="background: rgba(74, 222, 128, 0.2); color: var(--green);">
+                    <i class="fas fa-bookmark"></i>
+                </div>
+                <h3>Reading Position Memory</h3>
+                <p>Lumiqo remembers where you left off, page progression, and custom bookmarks for every document automatically.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon-box" style="background: rgba(96, 165, 250, 0.2); color: var(--blue);">
+                    <i class="fas fa-folder-tree"></i>
+                </div>
+                <h3>Reactive Storage Scanner</h3>
+                <p>Real-time MediaStore and SAF integration scans local device storage automatically with instant search and custom sorting.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon-box" style="background: rgba(248, 113, 113, 0.2); color: var(--red);">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Password Protection</h3>
+                <p>Encrypt sensitive PDFs with strong passwords or easily unlock protected documents right from your Android phone.</p>
+            </div>
+
+            <div class="feat-card">
+                <div class="feat-icon-box" style="background: rgba(244, 114, 182, 0.2); color: var(--pink);">
+                    <i class="fas fa-file-export"></i>
+                </div>
+                <h3>High Quality Converters</h3>
+                <p>Convert images to PDF, extract high-res JPG/PNG pages, export to Office formats (Word, Excel, PPT), or web to PDF.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF Tools Suite Section -->
+    <section id="tools" style="background: #0E0E14; border-y: 1px solid var(--border-color);">
+        <div class="section-header">
+            <span class="section-tag">PDF Manipulation Suite</span>
+            <h2 class="section-title">15+ Built-in Utility Tools</h2>
+            <p class="section-desc">Perform complex PDF operations directly on your device without needing external desktop software.</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="tools-filter-bar">
+            <button class="tab-btn active" onclick="filterTools('all')">All Tools</button>
+            <button class="tab-btn" onclick="filterTools('organize')">Organize PDF</button>
+            <button class="tab-btn" onclick="filterTools('convert')">Convert PDF</button>
+            <button class="tab-btn" onclick="filterTools('security')">Security & Sign</button>
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="tools-grid">
+            <div class="tool-box" data-cat="organize">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(124, 92, 252, 0.2); color: var(--primary-light);">
+                        <i class="fas fa-code-merge"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Merge PDF</h4>
+                <p>Combine multiple PDF files into one continuous document easily.</p>
+            </div>
+
+            <div class="tool-box" data-cat="organize">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(251, 191, 36, 0.2); color: var(--orange);">
+                        <i class="fas fa-arrows-split-up-and-left"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Split PDF</h4>
+                <p>Separate a single PDF into individual pages or custom page ranges.</p>
+            </div>
+
+            <div class="tool-box" data-cat="organize">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(74, 222, 128, 0.2); color: var(--green);">
+                        <i class="fas fa-compress"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Compress PDF</h4>
+                <p>Reduce document file size with quality-controlled stream compression.</p>
+            </div>
+
+            <div class="tool-box" data-cat="organize">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(248, 113, 113, 0.2); color: var(--red);">
+                        <i class="fas fa-trash-can"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Delete Pages</h4>
+                <p>Select and remove unwanted pages from any PDF document.</p>
+            </div>
+
+            <div class="tool-box" data-cat="organize">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(96, 165, 250, 0.2); color: var(--blue);">
+                        <i class="fas fa-scissors"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Extract Pages</h4>
+                <p>Extract specific page numbers to form a brand new PDF file.</p>
+            </div>
+
+            <div class="tool-box" data-cat="organize">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(124, 92, 252, 0.2); color: var(--primary-light);">
+                        <i class="fas fa-sort"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Reorder Pages</h4>
+                <p>Rearrange document page positions with drag-and-drop ease.</p>
+            </div>
+
+            <div class="tool-box" data-cat="convert">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(251, 191, 36, 0.2); color: var(--orange);">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>PDF to Image</h4>
+                <p>Convert PDF pages into high-resolution JPG or PNG image files.</p>
+            </div>
+
+            <div class="tool-box" data-cat="convert">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(248, 113, 113, 0.2); color: var(--red);">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Image to PDF</h4>
+                <p>Convert gallery photos or camera shots into structured PDF files.</p>
+            </div>
+
+            <div class="tool-box" data-cat="convert">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(96, 165, 250, 0.2); color: var(--blue);">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>PDF to Word</h4>
+                <p>Transform PDFs into editable Microsoft Word (.docx) documents.</p>
+            </div>
+
+            <div class="tool-box" data-cat="convert">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(74, 222, 128, 0.2); color: var(--green);">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>PDF to Excel</h4>
+                <p>Convert PDF data tables into clean Excel spreadsheets (.xlsx).</p>
+            </div>
+
+            <div class="tool-box" data-cat="convert">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(251, 191, 36, 0.2); color: var(--orange);">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>PDF to PPT</h4>
+                <p>Export PDF presentations into editable PowerPoint slides (.pptx).</p>
+            </div>
+
+            <div class="tool-box" data-cat="convert">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(124, 92, 252, 0.2); color: var(--primary-light);">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <span class="tool-badge badge-pro">Pro</span>
+                </div>
+                <h4>Web to PDF & OCR</h4>
+                <p>Save webpage URLs to PDF and run on-device OCR text recognition.</p>
+            </div>
+
+            <div class="tool-box" data-cat="security">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(124, 92, 252, 0.2); color: var(--primary-light);">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Protect PDF</h4>
+                <p>Encrypt PDF documents with strong custom password protection.</p>
+            </div>
+
+            <div class="tool-box" data-cat="security">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(251, 191, 36, 0.2); color: var(--orange);">
+                        <i class="fas fa-lock-open"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Unlock PDF</h4>
+                <p>Remove passwords and security restrictions from unlocked PDFs.</p>
+            </div>
+
+            <div class="tool-box" data-cat="security">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(74, 222, 128, 0.2); color: var(--green);">
+                        <i class="fas fa-droplet"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Watermark PDF</h4>
+                <p>Add custom text or image stamps with custom transparency and rotation.</p>
+            </div>
+
+            <div class="tool-box" data-cat="security">
+                <div class="tool-box-header">
+                    <div class="tool-icon" style="background: rgba(96, 165, 250, 0.2); color: var(--blue);">
+                        <i class="fas fa-signature"></i>
+                    </div>
+                    <span class="tool-badge badge-free">Free</span>
+                </div>
+                <h4>Sign PDF</h4>
+                <p>Draw and apply digital handwritten signatures directly onto pages.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reader Showcase Section -->
+    <section id="reader">
+        <div class="reader-showcase">
+            <div class="showcase-content">
+                <span class="section-tag">Comfort Reading Experience</span>
+                <h2>Designed for Books, Manuals & Documents</h2>
+                <p style="color: var(--text-secondary); font-size: 16px;">
+                    Whether you are reading academic research, e-books, financial reports, or architectural blueprints, Lumiqo delivers an adaptable reading interface tailored to your habits.
+                </p>
+
+                <ul class="showcase-list">
+                    <li><i class="fas fa-circle-check"></i> Vertical Continuous & Horizontal Page Flipping</li>
+                    <li><i class="fas fa-circle-check"></i> Page Thumbnail Grid & Table of Contents</li>
+                    <li><i class="fas fa-circle-check"></i> One-Tap Page Bookmarking & Jump-To-Page Slider</li>
+                    <li><i class="fas fa-circle-check"></i> Keep Screen Awake & Orientation Lock Support</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center;">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: inline-block; width: 100%; max-width: 380px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <span style="font-weight: 800; font-size: 14px; color: var(--primary-light);"><i class="fas fa-book"></i> Chapter 4: Architecture.pdf</span>
+                        <span style="font-size: 12px; color: var(--text-tertiary);">Page 24 of 180</span>
+                    </div>
+                    <div style="background: #0E0E12; padding: 24px; border-radius: 12px; height: 260px; text-align: left; overflow: hidden; border: 1px dashed var(--border-color);">
+                        <div style="width: 60%; height: 12px; background: rgba(255,255,255,0.25); border-radius: 4px; margin-bottom: 16px;"></div>
+                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.15); border-radius: 4px; margin-bottom: 10px;"></div>
+                        <div style="width: 95%; height: 8px; background: rgba(255,255,255,0.15); border-radius: 4px; margin-bottom: 10px;"></div>
+                        <div style="width: 88%; height: 8px; background: rgba(255,255,255,0.15); border-radius: 4px; margin-bottom: 20px;"></div>
+                        <div style="background: rgba(124, 92, 252, 0.2); border-left: 3px solid var(--primary); padding: 12px; border-radius: 4px; font-size: 12px; color: var(--primary-light); font-weight: 600;">
+                            "Lumiqo's smooth page cache provides zero stutter during fast scrolling."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy & Tech Architecture -->
+    <section id="privacy">
+        <div class="section-header">
+            <span class="section-tag">Privacy First Architecture</span>
+            <h2 class="section-title">Your Files Never Leave Your Device</h2>
+            <p class="section-desc">Unlike web-based PDF converters that upload your confidential documents to unknown cloud servers, Lumiqo operates 100% locally on your phone.</p>
+        </div>
+
+        <div class="tech-privacy-grid">
+            <div class="tp-card">
+                <h3><i class="fas fa-user-shield" style="color: var(--green);"></i> Zero Cloud Uploads</h3>
+                <p>All PDF tool operations — including merging, splitting, compressing, encryption, and conversions — are processed entirely on your device's memory. Your personal documents stay strictly private.</p>
+                <div style="font-size: 13px; font-weight: 800; color: var(--green);"><i class="fas fa-check-double"></i> Verified On-Device Engine</div>
+            </div>
+
+            <div class="tp-card">
+                <h3><i class="fas fa-microchip" style="color: var(--primary-light);"></i> Modern Tech Stack</h3>
+                <p>Lumiqo is engineered with top-tier native Android libraries ensuring maximum stability, low battery consumption, and reactive user feedback.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Kotlin 1.9</span>
+                    <span class="tech-tag">Jetpack Compose</span>
+                    <span class="tech-tag">Material 3</span>
+                    <span class="tech-tag">Room DB</span>
+                    <span class="tech-tag">PDFBox Android</span>
+                    <span class="tech-tag">Razorpay SDK</span>
+                    <span class="tech-tag">Firebase FCM</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lumiqo Premium Section -->
+    <section id="premium">
+        <div class="premium-card">
+            <div class="premium-flex">
+                <div class="premium-info">
+                    <span class="premium-tag"><i class="fas fa-sparkles"></i> LUMIQO PRO</span>
+                    <h2>Unlock Unlimited PDF Power</h2>
+                    <p style="color: var(--text-secondary); font-size: 16px;">
+                        Upgrade to Lumiqo Premium for unlimited batch tool operations, high-speed OCR text extraction, multi-device backup, and a 100% ad-free experience.
+                    </p>
+
+                    <ul class="premium-features-list">
+                        <li><i class="fas fa-circle-check"></i> Unlimited PDF Merging & Splitting</li>
+                        <li><i class="fas fa-circle-check"></i> High-Speed OCR Text Recognition</li>
+                        <li><i class="fas fa-circle-check"></i> Unlimited PDF to Office Conversions</li>
+                        <li><i class="fas fa-circle-check"></i> Password Protect & Unlock Files</li>
+                        <li><i class="fas fa-circle-check"></i> Cloud Sync & Multi-device Backup</li>
+                        <li><i class="fas fa-circle-check"></i> 100% Ad-Free Clean Interface</li>
+                    </ul>
+
+                    <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                        <a href="https://play.google.com/store" target="_blank" class="btn-primary" style="background: linear-gradient(135deg, var(--orange) 0%, #D97706 100%); border-color: rgba(255,255,255,0.3); padding: 14px 32px;">
+                            <i class="fas fa-crown"></i> Get Lumiqo Pro
+                        </a>
+                        <span style="font-size: 13px; color: var(--orange); font-weight: 800;"><i class="fas fa-shield"></i> Powered by Razorpay Secure</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <i class="fas fa-crown crown-glow"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="section-header">
+            <span class="section-tag">Got Questions?</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-desc">Here is everything you need to know about Lumiqo.</p>
+        </div>
+
+        <div class="faq-accordion">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is Lumiqo free to download and use?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! Lumiqo is completely free to download from the Google Play Store. Core reading features and standard PDF utility tools are free to use.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Are my PDF documents uploaded to external servers?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    No, never! Lumiqo processes all PDF modifications, conversions, and rendering locally on your Android device. Your private documents never leave your phone.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Which PDF editing tools are included in Lumiqo?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Lumiqo includes 15+ built-in tools: Merge, Split, Compress, Delete Pages, Extract Pages, Reorder Pages, PDF to Image, Image to PDF, PDF to Word/Excel/PPT, Web to PDF, Protect PDF, Unlock PDF, Watermark, and Digital Signature.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What advantages does Lumiqo Pro offer?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Lumiqo Pro unlocks unlimited batch processing, advanced OCR text recognition, high-resolution conversions, password protection features, cloud sync backup, and completely removes all advertisements.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call To Action Banner -->
+    <div class="cta-banner">
+        <h2>Ready for the Ultimate PDF Experience?</h2>
+        <p>Join thousands of Android users who read, manage, and transform documents effortlessly with Lumiqo.</p>
+        <a href="https://play.google.com/store" target="_blank" class="btn-white">
+            <i class="fab fa-google-play"></i> Get It On Google Play
+        </a>
+    </div>
+
+    <!-- Footer -->
     <footer>
         <div class="footer-grid">
-            <div class="footer-col">
-                <a href="#" class="logo" style="margin-bottom: 20px;">Lumiqo</a>
-                <p style="font-size: 14px;">Lumiqo Labs is dedicated to building the world's most intuitive and fast PDF reading experience.</p>
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon"><i class="fas fa-file-pdf"></i></div>
+                    <span>Lumiqo</span>
+                </a>
+                <p>Lumiqo Labs is dedicated to building the world's most intuitive, secure, and fast Android PDF reading & document manipulation suite.</p>
             </div>
+
             <div class="footer-col">
                 <h4>Product</h4>
                 <ul>
                     <li><a href="#features">Features</a></li>
-                    <li><a href="#premium">Pricing</a></li>
-                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#tools">PDF Tools</a></li>
+                    <li><a href="#reader">Reader Showcase</a></li>
+                    <li><a href="#premium">Lumiqo Pro</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
                 <h4>Support</h4>
                 <ul>
-                    <li><a href="mailto:support@lumiqo.com">Help Center</a></li>
-                    <li><a href="licenses.html">Open Source</a></li>
-                    <li><a href="mailto:support@lumiqo.com">Contact Us</a></li>
+                    <li><a href="mailto:ujvl.dev@gmail.com">Help Center</a></li>
+                    <li><a href="licenses.html">Open Source Licenses</a></li>
+                    <li><a href="mailto:ujvl.dev@gmail.com">Contact Developer</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
@@ -285,15 +1518,41 @@
                 </ul>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <p style="color: var(--text-tertiary); font-size: 14px;">&copy; 2026 Lumiqo Labs. Built by Ujjaval Saini.</p>
+            <p>&copy; 2026 Lumiqo Labs. Designed & Built by <strong>Ujjaval Saini</strong>.</p>
             <div class="social-links">
-                <a href="https://github.com/ujjaval01" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/code.ujvl/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/ujjavalsaini" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ujjaval01" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/code.ujvl/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/ujjavalsaini" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript for Interactions -->
+    <script>
+        function filterTools(category) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            const tools = document.querySelectorAll('.tool-box');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            tools.forEach(tool => {
+                if (category === 'all' || tool.getAttribute('data-cat') === category) {
+                    tool.style.display = 'flex';
+                } else {
+                    tool.style.display = 'none';
+                }
+            });
+        }
+
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>

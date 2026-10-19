@@ -3,125 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Source Licenses - Lumiqo PDF Reader</title>
+    <title>Open Source Licenses — Lumiqo PDF Reader</title>
+    <meta name="theme-color" content="#0A0A0C">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg: #0A0A0C;
-            --surface: #18181C;
-            --card: #1C1C21;
+            --bg-dark: #0A0A0C;
+            --surface: #141418;
+            --card-bg: #1A1A22;
             --primary: #7C5CFC;
-            --primary-light: #9C85FF;
-            --text-primary: #F5F5F7;
-            --text-secondary: #9A9AA2;
-            --text-tertiary: #6B6B73;
+            --primary-light: #A78BFA;
+            --primary-dark: #5B3FE0;
+            --text-primary: #FFFFFF;
+            --text-secondary: #D1D1D8;
+            --text-tertiary: #9CA3AF;
+            --border-color: #26262E;
+            --radius-md: 16px;
+            --radius-xl: 24px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.7;
+            min-height: 100vh;
         }
 
         nav {
-            padding: 20px 10%;
+            padding: 18px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(10px);
+            background: #0E0E12;
             position: sticky;
-            top: 0; z-index: 100;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
-            font-weight: 800; font-size: 24px; color: var(--primary-light);
-            display: flex; align-items: center; gap: 10px; text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 22px;
         }
 
-        .container { max-width: 850px; margin: 0 auto; padding: 60px 20px; }
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 18px;
+            box-shadow: 0 4px 16px rgba(124, 92, 252, 0.4);
+        }
 
-        .header { text-align: center; margin-bottom: 50px; }
-        .header h1 { font-size: 36px; margin-bottom: 10px; }
-        .header p { color: var(--text-secondary); }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            background: var(--primary);
+            padding: 10px 22px;
+            border-radius: 50px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(124, 92, 252, 0.4);
+        }
+
+        .btn-back:hover {
+            background: #6B46FF;
+            transform: translateY(-2px);
+        }
+
+        .page-header {
+            padding: 60px 8% 40px;
+            text-align: center;
+            background: #0E0E14;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-title {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 8% 100px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
 
         .license-card {
-            background: var(--surface);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: var(--card-bg);
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
         }
 
-        h2 { font-size: 20px; color: var(--primary-light); margin-bottom: 15px; }
-        .license-text {
-            background: rgba(0,0,0,0.3);
-            padding: 20px;
-            border-radius: 12px;
-            font-family: monospace;
-            font-size: 13px;
+        .license-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+
+        .license-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 8% 40px;
+            border-top: 1px solid var(--border-color);
+            background: #08080A;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 20px;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .copyright {
             color: var(--text-tertiary);
-            overflow-x: auto;
-            white-space: pre-wrap;
+            font-size: 14px;
         }
 
-        footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        @media (max-width: 768px) {
+            .content-card { padding: 28px 20px; }
+            nav { padding: 16px 5%; }
+            .container { padding: 20px 4% 60px; }
+            .page-header { padding: 40px 5% 30px; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="logo">Lumiqo</a>
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-file-pdf"></i></div>
+            <span>Lumiqo</span>
+        </a>
+        <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </nav>
 
+    <header class="page-header">
+        <h1 class="page-title">Open Source Licenses</h1>
+        <p class="page-subtitle">Lumiqo is powered by world-class open source software.</p>
+    </header>
+
     <main class="container">
-        <div class="header">
-            <h1>Open Source Licenses</h1>
-            <p>Lumiqo is built using high-quality open source software.</p>
+        <div class="content-card">
+            <div class="license-card">
+                <h3>PDFBox Android (com.tom-roush:pdfbox-android)</h3>
+                <p>Apache License, Version 2.0 • Port of Apache PDFBox for Android platforms.</p>
+            </div>
+
+            <div class="license-card">
+                <h3>Jetpack Compose & AndroidX Framework</h3>
+                <p>Apache License, Version 2.0 • Google LLC Android UI and architecture suite.</p>
+            </div>
+
+            <div class="license-card">
+                <h3>Kotlin Coroutines & Flow</h3>
+                <p>Apache License, Version 2.0 • JetBrains async and reactive state framework.</p>
+            </div>
+
+            <div class="license-card">
+                <h3>Room Persistence Library</h3>
+                <p>Apache License, Version 2.0 • Google LLC SQLite ORM mapping library.</p>
+            </div>
+
+            <div class="license-card">
+                <h3>Razorpay Android Checkout SDK</h3>
+                <p>Proprietary Payment License • Razorpay Software Private Limited.</p>
+            </div>
+
+            <div class="license-card">
+                <h3>Firebase SDKs (FCM & Firestore)</h3>
+                <p>Apache License, Version 2.0 • Google Cloud messaging and push notification platform.</p>
+            </div>
         </div>
-
-        <div class="license-card">
-            <h2>Jetpack Compose</h2>
-            <p style="margin-bottom: 15px;">Copyright (C) 2022 The Android Open Source Project</p>
-            <div class="license-text">Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</div>
-        </div>
-
-        <div class="license-card">
-            <h2>Razorpay Android SDK</h2>
-            <p style="margin-bottom: 15px;">Copyright (c) 2021 Razorpay</p>
-            <div class="license-text">MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software.</div>
-        </div>
-
-        <div class="license-card">
-            <h2>Material Components for Android</h2>
-            <p style="margin-bottom: 15px;">Copyright (c) 2015 Google</p>
-            <div class="license-text">Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.</div>
-        </div>
-
     </main>
 
     <footer>
-        <p style="color: var(--text-tertiary); font-size: 12px;">© 2026 Lumiqo Labs</p>
+        <span class="footer-logo">Lumiqo Labs</span>
+        <p class="copyright">© 2026 Lumiqo PDF Reader. Designed & Built by Ujjaval Saini.</p>
     </footer>
 
 </body>
